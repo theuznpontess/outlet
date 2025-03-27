@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outlet Imports</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" type="text/css" href="cadastro.css">
+</head>
+<body>
+
+    <h2>OUTLET IMPORTS</h2>
+    
+    <form onsubmit="return false;">
+        <input type="email" id="email" placeholder="Digite seu email" required>
+        <input type="password" id="senha" placeholder="Digite sua senha" required>
+        <button type="button" onclick="login()">Entrar</button>
+        <button type="button" onclick="cadastrar()">Cadastrar</button>
+    </form>
+    
+    <p id="mensagem"></p>
+
+    <script>
+        const supabase = window.supabase.createClient(
+            "https://rbmqscyirlztqfjlwaiu.supabase.co",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJibXFzY3lpcmx6dHFmamx3YWl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwOTg0MzQsImV4cCI6MjA1ODY3NDQzNH0.zPmJT-xraOniFriqlnHe4PfqO3jbKds-bObEyk58-Uc"
+        );
+
+        async function login() {
+            console.log("Tentando fazer login...");
+            const email = document.getElementById("email").value.trim();
+            const senha = document.getElementById("senha").value.trim();
+            
+            if (!email || !senha) {
+                document.getElementById("mensagem").innerText = "Preencha todos os campos!";
+                return;
+            }
+
+            const { data, error } = await supabase.auth.signInWithPassword({ email, password: senha });
+
+            if (error) {
+                document.getElementById("mensagem").innerText = "Erro: " + error.message;
+            } else {
+                document.getElementById("mensagem").innerText = "Login realizado com sucesso!";
+                localStorage.setItem("usuarioEmail", email);
+                setTimeout(() => {
+                    window.location.href = "bem-vindo.html";
+                }, 2000);
+            }
+        }
+
+        async function cadastrar() {
+            console.log("Tentando cadastrar...");
+            const email = document.getElementById("email").value.trim();
+            const senha = document.getElementById("senha").value.trim();
+
+            if (!email || !senha) {
+                document.getElementById("mensagem").innerText = "Preencha todos os campos!";
+                return;
+            }
+
+            const { data, error } = await supabase.auth.signUp({ email, password: senha });
+
+            if (error) {
+                document.getElementById("mensagem").innerText = "Erro: " + error.message;
+            } else {
+                document.getElementById("mensagem").innerText = "Cadastro realizado com sucesso!";
+            }
+        }
+    </script>
+</body>
+</html>

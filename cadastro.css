@@ -1,0 +1,93 @@
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: white; 
+    color: rgb(110, 110, 225); 
+    overflow: hidden;
+}
+
+h2 {
+    margin-bottom: 20px;
+    position: absolute;
+    top: 80px;
+    text-align: center;
+    width: 100%;
+    font-size: 24px;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center; 
+    position: relative;
+    margin-top: 100px; /* Ajuste no espaço superior para o conteúdo */
+    animation: fadeIn 1s ease-in-out;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid rgb(110, 110, 225);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    background-color: rgb(110, 110, 225);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Efeito de transição ao passar o mouse */
+}
+
+button:hover {
+    background-color: rgb(50, 50, 225); /* Azul mais escuro ao passar o mouse */
+}
+
+p {
+    color: #d9534f;
+}
+
+/* Animação para fade in do formulário */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Animação para a mensagem de erro/sucesso */
+.fadeMessage {
+    animation: fadeInMessage 1s ease-in-out;
+}
+
+@keyframes fadeInMessage {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
